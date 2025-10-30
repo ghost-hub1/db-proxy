@@ -1,10 +1,25 @@
 {
+  "//": "🚀 Vercel configuration for PHP API (modern, stable, and future-safe)",
   "functions": {
     "api/db_proxy.php": {
-      "runtime": "vercel-php@0.6.1"
+      "runtime": "@vercel-community/php@latest",
+      "memory": 512,
+      "maxDuration": 10
     }
   },
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
-  ]
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/db_proxy.php"
+    }
+  ],
+  "env": {
+    "PHP_INI_DISPLAY_ERRORS": "1",
+    "PHP_INI_MEMORY_LIMIT": "512M",
+    "PHP_INI_MAX_EXECUTION_TIME": "30"
+  }
 }
