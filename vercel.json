@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/db_proxy.php": {
+      "runtime": "vercel-php@0.6.1"
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" }
+  ]
+}
